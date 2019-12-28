@@ -1,0 +1,37 @@
+CA_BASEDIR      = .
+RANDFILE        = $ENV::CA_BASEDIR/.rnd
+
+####################################################################
+[ req ]
+default_bits       = 2048
+default_keyfile    = serverkey.pem
+distinguished_name = server_distinguished_name
+req_extensions     = server_req_extensions
+string_mask        = utf8only
+prompt = no
+
+####################################################################
+[ server_distinguished_name ]
+C = FI
+ST = Uusimaa
+L = Vantaa
+O = Juksutin
+CN = 127.0.0.1
+emailAddress = jp.sarjanen@gmail.com
+
+####################################################################
+[ server_req_extensions ]
+
+subjectKeyIdentifier = hash
+basicConstraints     = CA:FALSE
+keyUsage             = digitalSignature, keyEncipherment
+subjectAltName       = @alternate_names
+nsComment            = "OpenSSL Generated Certificate"
+
+####################################################################
+[ alternate_names ]
+
+DNS.1  = localhost
+#IPv4 localhost
+IP.1  = 127.0.0.1
+IP.2  = 192.168.66.36
