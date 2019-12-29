@@ -26,12 +26,5 @@ openssl req -x509 -config  $CA_BASEDIR/conf/openssl-ca.cnf -newkey rsa:4096 -sha
 cp $CA_BASEDIR/cacert.pem $EST_BASEDIR/certs/
 openssl crl2pkcs7 -nocrl -certfile $EST_BASEDIR/certs/cacert.pem -out $EST_BASEDIR/certs/cacert.p7b
 
-#Create key and csr for our est server....
-pushd $EST_BASEDIR/certs
-openssl req -config  $CA_BASEDIR/conf/est_server_cert.cnf -newkey rsa:2048 -sha256 -nodes -out $CA_BASEDIR/csr_dir/servercert.csr -outform PEM
-popd
-
-#and sign it
-openssl ca  -batch -config $CA_BASEDIR/conf/openssl-ca.cnf -policy signing_policy -extensions signing_req -out $EST_BASEDIR/certs/servercert.pem -infiles $CA_BASEDIR/csr_dir/servercert.csr
-#remove csr
-rm $CA_BASEDIR/csr_dir/servercert.csr
+#Create server certificate and put it to place.
+$CA_BASEDIR/scripts/update_server_cert.sh
