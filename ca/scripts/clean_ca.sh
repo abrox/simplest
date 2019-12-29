@@ -11,7 +11,8 @@ rm -f   $CA_BASEDIR/serial.txt*
 rm -rf  $CA_BASEDIR/certs
 rm -f   $CA_BASEDIR/.rnd
 rm -f   $CA_BASEDIR/cakey.pem
-
 rm -rf  $CA_BASEDIR/csr_dir
 rm -rf  $CA_BASEDIR/cacert.*
-rm -f   $EST_BASEDIR/certs/*
+
+rm -rf   $EST_BASEDIR/certs
+rm -rf   $EST_BASEDIR/csr_req
