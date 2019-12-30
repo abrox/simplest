@@ -49,7 +49,8 @@ def handle_args(parser):
 
 
 if __name__ == '__main__':
-    ARGS = handle_args(argparse.ArgumentParser())
+    ARGS = handle_args(argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter))
 
     if ARGS.user is not None:
         est.KEY = base64.b64encode(ARGS.user.encode('utf-8')).decode("utf-8")
